@@ -8,7 +8,6 @@ Marnix
 •	Sprint planning voorbereiden
 •	GitHub repository aanmaken en structuur inrichten (/docs, /sql)
 •	Rollen en afspraken vastleggen in documentatie
-•	Eerste versie ERD maken
 
 Jan
 •	Casus analyseren en entiteiten identificeren
@@ -23,6 +22,7 @@ Nout
 •	Basis SQL-structuur opzetten (optioneel in Sprint 1)
 •	GitHub commits controleren
 •	Checklist per user story afvinken
+•	Eerste versie ERD maken
 
 Algemene Afspraken
 •	Iedereen begrijpt het ERD en kan het uitleggen.
