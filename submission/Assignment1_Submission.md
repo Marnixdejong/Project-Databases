@@ -79,67 +79,18 @@ recorded which student bought which drink in what quantity.
 
 ```mermaid
 erDiagram
-    Person {
-        int person_id PK
-        varchar first_name
-        varchar last_name
-        varchar phone_number
-    }
-    Student {
-        int person_id PK
-        varchar student_number
-        varchar class
-    }
-    Lecturer {
-        int person_id PK
-        int age
-    }
-    Building {
-        int building_id PK
-        varchar name
-    }
-    Room {
-        int room_id PK
-        int building_id FK
-        varchar room_number
-        int capacity
-        bit is_teacher_room
-    }
-    RoomAssignment {
-        int person_id FK
-        int room_id FK
-    }
-    Activity {
-        int activity_id PK
-        varchar name
-        datetime start_time
-        datetime end_time
-    }
-    ActivityParticipant {
-        int student_id FK
-        int activity_id FK
-    }
-    ActivitySupervisor {
-        int lecturer_id FK
-        int activity_id FK
-    }
-    Drink {
-        int drink_id PK
-        varchar name
-        decimal price
-        decimal vat_rate
-        int stock
-    }
-    Order {
-        int order_id PK
-        int student_id FK
-        datetime order_date
-    }
-    OrderItem {
-        int order_id FK
-        int drink_id FK
-        int quantity
-    }
+    Person
+    Student
+    Lecturer
+    Building
+    Room
+    RoomAssignment
+    Activity
+    ActivityParticipant
+    ActivitySupervisor
+    Drink
+    Order
+    OrderItem
 
     Person ||--o| Student : "is a"
     Person ||--o| Lecturer : "is a"
@@ -154,6 +105,48 @@ erDiagram
     Order ||--o{ OrderItem : "contains"
     Drink ||--o{ OrderItem : "ordered as"
 ```
+
+#### Entity Attributes
+
+| Entity | Attribute | Type | Key |
+|---|---|---|---|
+| Person | person_id | INT | PK |
+| Person | first_name | VARCHAR(50) | |
+| Person | last_name | VARCHAR(50) | |
+| Person | phone_number | VARCHAR(20) | |
+| Student | person_id | INT | PK, FK → Person |
+| Student | student_number | VARCHAR(50) | |
+| Student | class | VARCHAR(50) | |
+| Lecturer | person_id | INT | PK, FK → Person |
+| Lecturer | age | INT | |
+| Building | building_id | INT | PK |
+| Building | name | VARCHAR(100) | |
+| Room | room_id | INT | PK |
+| Room | building_id | INT | FK → Building |
+| Room | room_number | VARCHAR(10) | |
+| Room | capacity | INT | |
+| Room | is_teacher_room | BIT | |
+| RoomAssignment | person_id | INT | PK, FK → Person |
+| RoomAssignment | room_id | INT | PK, FK → Room |
+| Activity | activity_id | INT | PK |
+| Activity | name | VARCHAR(100) | |
+| Activity | start_time | DATETIME | |
+| Activity | end_time | DATETIME | |
+| ActivityParticipant | student_id | INT | PK, FK → Student |
+| ActivityParticipant | activity_id | INT | PK, FK → Activity |
+| ActivitySupervisor | lecturer_id | INT | PK, FK → Lecturer |
+| ActivitySupervisor | activity_id | INT | PK, FK → Activity |
+| Drink | drink_id | INT | PK |
+| Drink | name | VARCHAR(100) | |
+| Drink | price | DECIMAL(10,2) | |
+| Drink | vat_rate | DECIMAL(4,2) | |
+| Drink | stock | INT | |
+| Order | order_id | INT | PK |
+| Order | student_id | INT | FK → Student |
+| Order | order_date | DATETIME | |
+| OrderItem | order_id | INT | PK, FK → Order |
+| OrderItem | drink_id | INT | PK, FK → Drink |
+| OrderItem | quantity | INT | |
 
 ---
 
