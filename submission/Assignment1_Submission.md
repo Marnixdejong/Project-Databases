@@ -58,20 +58,6 @@ recorded which student bought which drink in what quantity.
 | **Order** | orderId (PrimaryKey), studentId (ForeignKey > Student), orderDate | 
 | **OrderItem** | orderId (PrimaryKey/ForeignKey > Order), drinkId (ForeignKey > Drink), quantity | 
 
-
-### 2.2 Relationships, Cardinalities and Totalities
-
-| Relationship | Entities | Cardinality | Totality | Description |
-|---|---|---|---|---|
-| is a | Person – Student | 1:1 | Total (Student), Partial (Person) | Every Student is always a Person; not every Person is a Student |
-| is a | Person – Lecturer | 1:1 | Total (Lecturer), Partial (Person) | Every Lecturer is always a Person; not every Person is a Lecturer |
-| contains | Building – Room | 1:N | Total (Room), Partial (Building) | A Building can have multiple Rooms; every Room belongs to exactly one Building |
-| occupies | Person – Room | M:N | Partial (both) | Resolved via RoomAssignment; a person can be assigned to one room, a room can hold multiple persons |
-| participates in | Student – Activity | M:N | Partial (both) | Resolved via ActivityParticipant; a student can join many activities and vice versa |
-| supervises | Lecturer – Activity | M:N | Partial (both) | Resolved via ActivitySupervisor; a lecturer can supervise many activities and vice versa |
-| places | Student – Order | 1:N | Partial (Student) | A student can place zero or more orders; every order belongs to exactly one student |
-| contains | Order – Drink | M:N | Total (OrderItem) | Resolved via OrderItem; each order contains one or more drink lines |
-
 ### 2.3 ERD Diagram
 
 > The diagram below is rendered automatically by GitHub Markdown and by tools such as
