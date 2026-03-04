@@ -43,20 +43,21 @@ recorded which student bought which drink in what quantity.
 
 ### 2.1 Entities and Attributes
 
-| Entity | Attributes | Notes |
-|---|---|---|
-| **Person** | person_id (PK), first_name, last_name, phone_number | Supertype of Student and Lecturer |
-| **Student** | person_id (PK/FK → Person), student_number, class | Subtype of Person |
-| **Lecturer** | person_id (PK/FK → Person), age | Subtype of Person |
-| **Building** | building_id (PK), name | |
-| **Room** | room_id (PK), building_id (FK → Building), room_number, capacity, is_teacher_room | capacity = 8 for dormitories; is_teacher_room flag distinguishes type |
-| **RoomAssignment** | person_id (FK → Person), room_id (FK → Room) | Junction table – resolves M:N between Person and Room |
-| **Activity** | activity_id (PK), name, start_time, end_time | Examples: puzzle hunt, football tournament, obstacle course |
-| **ActivityParticipant** | student_id (FK → Student), activity_id (FK → Activity) | Junction table – student participation |
-| **ActivitySupervisor** | lecturer_id (FK → Lecturer), activity_id (FK → Activity) | Junction table – lecturer supervision |
-| **Drink** | drink_id (PK), name, price, vat_rate, stock | vat_rate ∈ {0.09, 0.21} |
-| **Order** | order_id (PK), student_id (FK → Student), order_date | One order per student transaction |
-| **OrderItem** | order_id (FK → Order), drink_id (FK → Drink), quantity | Junction table – lines within an order |
+| Entity | Attributes |
+|---|---|
+| **Person** | personId (PrimaryKey), firstName, lastName, phoneNumber (ForeignKey)| 
+| **Student** | studentId (PrimaryKey) personId (ForeignKey > Person), studentNumber, class (ForeignKey) | 
+| **Lecturer** |lectureId (PrimaryKey)  personId (ForeignKey > Person), age  | 
+| **Building** | building_id (PrimaryKey), name | 
+| **Room** | roomId (PrimaryKey), buildingId (ForeignKey > Building), roomNumber, capacity, isTeacherRoom capacity = 8 | 
+| **RoomAssignment** | personId (PrimaryKey/ForeignKey > Person), roomId (ForeignKey > Room) | 
+| **Activity** | activityId (PrimaryKey), name, startTime, endTime | 
+| **ActivityParticipant** | studentId (PrimaryKey/ForeignKey > Student), activityId (ForeignKey > Activity) |  
+| **ActivitySupervisor** | lecturerId (PrimaryKey/ForeignKey > Lecturer), activityId (ForeignKey > Activity) | 
+| **Drink** | drinkId (PrimaryKey), name, price, vatRate, stock | 
+| **Order** | orderId (PrimaryKey), studentId (ForeignKey > Student), orderDate | 
+| **OrderItem** | orderId (PrimaryKey/ForeignKey > Order), drinkId (ForeignKey > Drink), quantity | 
+
 
 ### 2.2 Relationships, Cardinalities and Totalities
 
