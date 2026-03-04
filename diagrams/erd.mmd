@@ -1,0 +1,75 @@
+erDiagram
+    Person {
+        int person_id PK
+        varchar first_name
+        varchar last_name
+        varchar phone_number
+    }
+    Student {
+        int person_id PK
+        varchar student_number
+        varchar class
+    }
+    Lecturer {
+        int person_id PK
+        int age
+    }
+    Building {
+        int building_id PK
+        varchar name
+    }
+    Room {
+        int room_id PK
+        int building_id FK
+        varchar room_number
+        int capacity
+        bit is_teacher_room
+    }
+    RoomAssignment {
+        int person_id FK
+        int room_id FK
+    }
+    Activity {
+        int activity_id PK
+        varchar name
+        datetime start_time
+        datetime end_time
+    }
+    ActivityParticipant {
+        int student_id FK
+        int activity_id FK
+    }
+    ActivitySupervisor {
+        int lecturer_id FK
+        int activity_id FK
+    }
+    Drink {
+        int drink_id PK
+        varchar name
+        decimal price
+        decimal vat_rate
+        int stock
+    }
+    Order {
+        int order_id PK
+        int student_id FK
+        datetime order_date
+    }
+    OrderItem {
+        int order_id FK
+        int drink_id FK
+        int quantity
+    }
+
+    Person ||--o| Student : "is a"
+    Person ||--o| Lecturer : "is a"
+    Building ||--o{ Room : "contains"
+    Room ||--o{ RoomAssignment : "assigned via"
+    Person ||--o{ RoomAssignment : "occupies"
+    Activity ||--o{ ActivityParticipant : "has"
+    Student ||--o{ ActivityParticipant : "participates in"
+    Activity ||--o{ ActivitySupervisor : "supervised by"
+    Lecturer ||--o{ ActivitySupervisor : "supervises"
+    Student ||--o{ Order : "places"
+    Order ||--o{ OrderItem : "contains"
+    Drink ||--o{ OrderItem : "ordered as"

@@ -1,6 +1,33 @@
-# Project-Databases
+# Project-Databases – Assignment 1: Someren Database
 
-Overzicht Taken
+## Submission
+
+| File | Description |
+|---|---|
+| [`submission/Assignment1_Submission.md`](submission/Assignment1_Submission.md) | **Single combined submission document** – case description, ERD (Mermaid), relational model, SQL schema and user stories. Ready to export to PDF. |
+| [`diagrams/erd.mmd`](diagrams/erd.mmd) | Standalone Mermaid ERD source file (render with Mermaid Live or `mmdc`). |
+| [`someren_sql_schema.sql`](someren_sql_schema.sql) | Full SQL CREATE TABLE script for SQL Server. |
+| [`submission/pdf_export_instructions.md`](submission/pdf_export_instructions.md) | Step-by-step guide for exporting the submission document to PDF. |
+| [`submission/generate_pdf.sh`](submission/generate_pdf.sh) | Shell script to auto-generate the PDF using Mermaid CLI + Pandoc. |
+
+## Repository Structure
+
+```
+Project-Databases/
+├── diagrams/
+│   └── erd.mmd                     # Mermaid ERD source
+├── submission/
+│   ├── Assignment1_Submission.md   # Combined submission document
+│   ├── pdf_export_instructions.md  # PDF generation guide
+│   └── generate_pdf.sh             # PDF generation script
+├── someren_sql_schema.sql           # SQL Server schema
+├── Assignment1_Report.md            # Original draft report
+└── README.md
+```
+
+---
+
+## Overzicht Taken
 
 Marnix
 •	Scrum Master rol
