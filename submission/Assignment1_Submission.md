@@ -48,7 +48,7 @@ recorded which student bought which drink in what quantity.
 | **Person** | personId (PrimaryKey), firstName, lastName, phoneNumber (ForeignKey)| 
 | **Student** | studentId (PrimaryKey) personId (ForeignKey > Person), studentNumber, class (ForeignKey) | 
 | **Lecturer** |lectureId (PrimaryKey)  personId (ForeignKey > Person), age  | 
-| **Building** | building_id (PrimaryKey), name | 
+| **Building** | buildingId (PrimaryKey), name | 
 | **Room** | roomId (PrimaryKey), buildingId (ForeignKey > Building), roomNumber, capacity, isTeacherRoom capacity = 8 | 
 | **RoomAssignment** | personId (PrimaryKey/ForeignKey > Person), roomId (ForeignKey > Room) | 
 | **Activity** | activityId (PrimaryKey), name, startTime, endTime | 
