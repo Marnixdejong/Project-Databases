@@ -58,7 +58,7 @@ recorded which student bought which drink in what quantity.
 | **Order** | orderId (PrimaryKey), studentId (ForeignKey > Student), orderDate | 
 | **OrderItem** | orderId (PrimaryKey/ForeignKey > Order), drinkId (ForeignKey > Drink), quantity | 
 
-### 2.3 ERD Diagram
+### 2.2 ERD Diagram
 
 > The diagram below is rendered automatically by GitHub Markdown and by tools such as
 > Mermaid Live Editor (<https://mermaid.live>).
