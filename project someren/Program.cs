@@ -17,13 +17,6 @@ namespace project_someren
 
             var app = builder.Build();
 
-            // Ensure database is created and seeded
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<project_someren.Data.ApplicationDbContext>();
-                db.Database.EnsureCreated();
-            }
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

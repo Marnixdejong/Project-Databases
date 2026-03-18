@@ -7,15 +7,15 @@ namespace project_someren.Models
     public class Lecturer
     {
         [Key]
-        [Column("lectureId")]
+        [Column("person_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
+        [Required]
         [Column("age")]
         public int Age { get; set; }
 
-        [Column("personId")]
-        public int PersonId { get; set; }
-
+        [ForeignKey("Id")]
         public Person? Person { get; set; }
     }
 }

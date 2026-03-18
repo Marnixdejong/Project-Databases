@@ -11,6 +11,7 @@
             <div class="card-body p-5 bg-light">
                 <form asp-action="Edit">
                     <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Person.Id" />
                     
             <div class="form-floating mb-3 shadow-sm rounded">
                 <input asp-for="StudentNumber" type="text" class="form-control" placeholder="StudentNumber" required />
@@ -18,24 +19,24 @@
                 <span asp-validation-for="StudentNumber" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="ClassId" type="number" class="form-control" placeholder="ClassId" required />
-                <label asp-for="ClassId"></label>
-                <span asp-validation-for="ClassId" class="text-danger"></span>
+                <input asp-for="Class" type="text" class="form-control" placeholder="Class" required />
+                <label asp-for="Class"></label>
+                <span asp-validation-for="Class" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="FirstName" type="text" class="form-control" placeholder="FirstName" required />
-                <label asp-for="FirstName"></label>
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <input asp-for="Person.FirstName" type="text" class="form-control" placeholder="FirstName" required />
+                <label asp-for="Person.FirstName">First Name</label>
+                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="LastName" type="text" class="form-control" placeholder="LastName" required />
-                <label asp-for="LastName"></label>
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <input asp-for="Person.LastName" type="text" class="form-control" placeholder="LastName" required />
+                <label asp-for="Person.LastName">Last Name</label>
+                <span asp-validation-for="Person.LastName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="TelephoneNumber" type="text" class="form-control" placeholder="TelephoneNumber" required />
-                <label asp-for="TelephoneNumber"></label>
-                <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+                <input asp-for="Person.TelephoneNumber" type="text" class="form-control" placeholder="TelephoneNumber" required />
+                <label asp-for="Person.TelephoneNumber">Telephone Number</label>
+                <span asp-validation-for="Person.TelephoneNumber" class="text-danger"></span>
             </div>
                     <div class="d-flex justify-content-between mt-4">
                         <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>

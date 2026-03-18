@@ -10,7 +10,7 @@
             </div>
             <div class="card-body p-5 text-center bg-light">
                 <h5 class="text-muted mb-4">Are you sure you want to permanently delete this lecturer?</h5>
-                <h2 class="text-danger fw-bold mb-5">@Model.Id</h2>
+                <h2 class="text-danger fw-bold mb-5">@Model.Person?.FirstName @Model.Person?.LastName</h2>
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="Id" />
                     <div class="d-flex justify-content-center gap-3">

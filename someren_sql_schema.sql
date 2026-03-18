@@ -1,3 +1,18 @@
+-- Clean up existing objects in correct dependency order
+IF OBJECT_ID('OrderItem', 'U') IS NOT NULL DROP TABLE OrderItem;
+IF OBJECT_ID('Order', 'U') IS NOT NULL DROP TABLE [Order];
+IF OBJECT_ID('Drink', 'U') IS NOT NULL DROP TABLE Drink;
+IF OBJECT_ID('ActivitySupervisor', 'U') IS NOT NULL DROP TABLE ActivitySupervisor;
+IF OBJECT_ID('ActivityParticipant', 'U') IS NOT NULL DROP TABLE ActivityParticipant;
+IF OBJECT_ID('Activity', 'U') IS NOT NULL DROP TABLE Activity;
+IF OBJECT_ID('RoomAssignment', 'U') IS NOT NULL DROP TABLE RoomAssignment;
+IF OBJECT_ID('Room_base', 'U') IS NOT NULL DROP TABLE Room_base;
+IF OBJECT_ID('Room', 'U') IS NOT NULL DROP TABLE Room;
+IF OBJECT_ID('Building', 'U') IS NOT NULL DROP TABLE Building;
+IF OBJECT_ID('Lecturer', 'U') IS NOT NULL DROP TABLE Lecturer;
+IF OBJECT_ID('Student', 'U') IS NOT NULL DROP TABLE Student;
+IF OBJECT_ID('Person', 'U') IS NOT NULL DROP TABLE Person;
+
 -- SQL schema for Someren database project
 
 -- Table: Person

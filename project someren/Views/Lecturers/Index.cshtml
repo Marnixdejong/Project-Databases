@@ -16,7 +16,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Age</th>
-                <th>PersonId</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>TelephoneNumber</th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
@@ -24,7 +26,9 @@
                 @foreach (var item in Model) {
                     <tr>
                         <td>@item.Age</td>
-                    <td>@item.PersonId</td>
+                    <td>@item.Person?.FirstName</td>
+                    <td>@item.Person?.LastName</td>
+                    <td>@item.Person?.TelephoneNumber</td>
                         <td class="text-end">
                             <div class="btn-group shadow-sm" role="group">
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>

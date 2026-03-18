@@ -1,26 +1,17 @@
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace project_someren.Models
 {
-    [Table("Activity")]
-    public class Activity
+    [Table("Building")]
+    public class Building
     {
         [Key]
-        [Column("activity_id")]
+        [Column("building_id")]
         public int Id { get; set; }
 
         [Required]
         [Column("name")]
         public string Name { get; set; } = string.Empty;
-
-        [Required]
-        [Column("start_time")]
-        public DateTime StartTime { get; set; }
-
-        [Required]
-        [Column("end_time")]
-        public DateTime EndTime { get; set; }
     }
 }

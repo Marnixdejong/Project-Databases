@@ -13,9 +13,9 @@
                     <input type="hidden" asp-for="Id" />
                     
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="Building" type="text" class="form-control" placeholder="Building" required />
-                <label asp-for="Building"></label>
-                <span asp-validation-for="Building" class="text-danger"></span>
+                <select asp-for="BuildingId" class="form-select" asp-items="ViewBag.BuildingId"></select>
+                <label asp-for="BuildingId">Building</label>
+                <span asp-validation-for="BuildingId" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
                 <input asp-for="RoomNumber" type="text" class="form-control" placeholder="RoomNumber" required />
@@ -23,14 +23,15 @@
                 <span asp-validation-for="RoomNumber" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="SquareMeters" type="number" class="form-control" placeholder="SquareMeters" required />
-                <label asp-for="SquareMeters"></label>
-                <span asp-validation-for="SquareMeters" class="text-danger"></span>
+                <input asp-for="Capacity" type="number" class="form-control" placeholder="Capacity" required />
+                <label asp-for="Capacity"></label>
+                <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="IsTeacherRoom" type="text" class="form-control" placeholder="IsTeacherRoom" required />
-                <label asp-for="IsTeacherRoom"></label>
-                <span asp-validation-for="IsTeacherRoom" class="text-danger"></span>
+            <div class="form-check mb-3">
+                <input asp-for="IsTeacherRoom" class="form-check-input" type="checkbox" />
+                <label class="form-check-label" asp-for="IsTeacherRoom">
+                    Is Teacher Room (Lecturer)
+                </label>
             </div>
                     <div class="d-flex justify-content-between mt-4">
                         <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>

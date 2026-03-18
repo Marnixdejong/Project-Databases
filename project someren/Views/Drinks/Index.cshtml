@@ -1,9 +1,8 @@
-
-@model IEnumerable<project_someren.Models.Room>
-@{ ViewData["Title"] = "Rooms"; }
+@model IEnumerable<project_someren.Models.Drink>
+@{ ViewData["Title"] = "Drinks"; }
 
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
-    <h1 class="display-5 fw-bold text-primary">Manage Rooms</h1>
+    <h1 class="display-5 fw-bold text-primary">Manage Drinks</h1>
     <a asp-action="Create" class="btn btn-lg btn-success shadow-sm rounded-pill px-4">
         <i class="bi bi-plus-circle me-2"></i>Create New
     </a>
@@ -15,20 +14,28 @@
             <table class="table table-hover table-striped align-middle mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th>Building</th>
-                <th>RoomNumber</th>
-                <th>Capacity</th>
-                <th>Type</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>VAT</th>
+                        <th>Stock</th>
+                        <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        <td>@item.Building?.Name</td>
-                    <td>@item.RoomNumber</td>
-                    <td>@item.Capacity</td>
-                    <td>@(item.IsTeacherRoom ? "Lecturer" : "Student")</td>
+                        <td class="fw-bold">@item.Name</td>
+                        <td>@item.Price.ToString("C2")</td>
+                        <td>@(item.VatRate)%</td>
+                        <td>@item.Stock</td>
+                        <td>
+                            @if (item.Stock < 10) {
+                                <span class="badge bg-danger rounded-pill px-3">Low Stock</span>
+                            } else {
+                                <span class="badge bg-success rounded-pill px-3">Sufficient</span>
+                            }
+                        </td>
                         <td class="text-end">
                             <div class="btn-group shadow-sm" role="group">
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>

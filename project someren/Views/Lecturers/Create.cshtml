@@ -17,9 +17,19 @@
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 shadow-sm rounded">
-                <input asp-for="PersonId" type="number" class="form-control" placeholder="PersonId" required />
-                <label asp-for="PersonId"></label>
-                <span asp-validation-for="PersonId" class="text-danger"></span>
+                <input asp-for="Person.FirstName" type="text" class="form-control" placeholder="FirstName" required />
+                <label asp-for="Person.FirstName">First Name</label>
+                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3 shadow-sm rounded">
+                <input asp-for="Person.LastName" type="text" class="form-control" placeholder="LastName" required />
+                <label asp-for="Person.LastName">Last Name</label>
+                <span asp-validation-for="Person.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3 shadow-sm rounded">
+                <input asp-for="Person.TelephoneNumber" type="text" class="form-control" placeholder="TelephoneNumber" required />
+                <label asp-for="Person.TelephoneNumber">Telephone Number</label>
+                <span asp-validation-for="Person.TelephoneNumber" class="text-danger"></span>
             </div>
                     <div class="d-flex justify-content-between mt-4">
                         <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>

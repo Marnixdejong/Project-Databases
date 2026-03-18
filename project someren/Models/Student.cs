@@ -7,22 +7,19 @@ namespace project_someren.Models
     public class Student
     {
         [Key]
-        [Column("studentId")]
+        [Column("person_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Column("studentNumber")]
+        [Required]
+        [Column("student_number")]
         public string StudentNumber { get; set; } = string.Empty;
 
-        [Column("classId")]
-        public int ClassId { get; set; }
+        [Required]
+        [Column("class")]
+        public string Class { get; set; } = string.Empty;
 
-        [Column("firstName")]
-        public string FirstName { get; set; } = string.Empty;
-
-        [Column("lastName")]
-        public string LastName { get; set; } = string.Empty;
-
-        [Column("phoneNumber")]
-        public string TelephoneNumber { get; set; } = string.Empty;
+        [ForeignKey("Id")]
+        public Person? Person { get; set; }
     }
 }

@@ -7,16 +7,18 @@ namespace project_someren.Models
     public class Person
     {
         [Key]
-        [Column("personId")]
+        [Column("person_id")]
         public int Id { get; set; }
 
-        [Column("firstName")]
+        [Required]
+        [Column("first_name")]
         public string FirstName { get; set; } = string.Empty;
 
-        [Column("lastName")]
+        [Required]
+        [Column("last_name")]
         public string LastName { get; set; } = string.Empty;
 
-        [Column("phoneNumber")]
+        [Column("phone_number")]
         public string TelephoneNumber { get; set; } = string.Empty;
     }
 }

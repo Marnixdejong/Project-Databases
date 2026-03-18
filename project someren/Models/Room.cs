@@ -7,19 +7,26 @@ namespace project_someren.Models
     public class Room
     {
         [Key]
-        [Column("roomId")]
+        [Column("room_id")]
         public int Id { get; set; }
 
-        [Column("building")]
-        public string Building { get; set; } = string.Empty;
+        [Required]
+        [Column("building_id")]
+        public int BuildingId { get; set; }
 
-        [Column("roomNumber")]
+        [Required]
+        [Column("room_number")]
         public string RoomNumber { get; set; } = string.Empty;
 
-        [Column("squareMeters")]
-        public decimal SquareMeters { get; set; }
+        [Required]
+        [Column("capacity")]
+        public int Capacity { get; set; }
 
-        [Column("isTeacherRoom")]
-        public string IsTeacherRoom { get; set; } = string.Empty;
+        [Required]
+        [Column("is_teacher_room")]
+        public bool IsTeacherRoom { get; set; }
+
+        [ForeignKey("BuildingId")]
+        public Building? Building { get; set; }
     }
 }
