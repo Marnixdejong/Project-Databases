@@ -1,5 +1,7 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
@@ -9,41 +11,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = project_someren
 build_property.RootNamespace = project_someren
-build_property.ProjectDir = C:\Users\marni\OneDrive\Documenten\GitHub\Project-Databases\project someren\
+build_property.ProjectDir = C:\Users\noutm\OneDrive\Documents\github school\Project-Databases\project someren\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\marni\OneDrive\Documenten\GitHub\Project-Databases\project someren
+build_property.MSBuildProjectDirectory = C:\Users\noutm\OneDrive\Documents\github school\Project-Databases\project someren
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/Home/Index.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Lecturers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Lecturers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Lecturers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Lecturers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Rooms/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Rooms/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Rooms/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/Rooms/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/Home/Privacy.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/Shared/Error.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/_ViewImports.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/_ViewStart.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marni/OneDrive/Documenten/GitHub/Project-Databases/project someren/Views/Shared/_Layout.cshtml]
+[C:/Users/noutm/OneDrive/Documents/github school/Project-Databases/project someren/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-s1mr33mzps
