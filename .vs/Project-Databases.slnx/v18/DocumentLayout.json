@@ -21,6 +21,30 @@
     {
       "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\pages\\lecturers\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\pages\\lecturers\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\pages\\lecturers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\pages\\lecturers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\pages\\lecturers\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\pages\\lecturers\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\pages\\lecturers\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\pages\\lecturers\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +54,86 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 10,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "project someren\\Pages\\Lecturers\\Edit.cshtml.cs",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Edit.cshtml.cs",
+              "RelativeToolTip": "project someren\\Pages\\Lecturers\\Edit.cshtml.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T12:58:09.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "project someren\\Pages\\Lecturers\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Create.cshtml.cs",
+              "RelativeToolTip": "project someren\\Pages\\Lecturers\\Create.cshtml.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T12:57:53.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Index.cshtml",
+              "RelativeDocumentMoniker": "project someren\\Pages\\Lecturers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Index.cshtml",
+              "RelativeToolTip": "project someren\\Pages\\Lecturers\\Index.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-18T12:57:44.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "project someren\\Pages\\Lecturers\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Pages\\Lecturers\\Index.cshtml.cs",
+              "RelativeToolTip": "project someren\\Pages\\Lecturers\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAABBwAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T12:57:34.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "project someren\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "project someren\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T12:53:13.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "project someren\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\appsettings.Development.json",
+              "RelativeToolTip": "project someren\\appsettings.Development.json",
+              "ViewState": "AgIAAAIAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-18T12:51:47.613Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -42,8 +144,7 @@
               "RelativeToolTip": "project someren\\project someren.csproj",
               "ViewState": "AgIAABAAAAAAAAAAAMBdwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-18T11:40:45.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-18T11:40:45.398Z"
             },
             {
               "$type": "Document",
@@ -89,7 +190,7 @@
               "RelativeDocumentMoniker": ".gitignore",
               "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-03-18T11:06:16.505Z",
               "EditorCaption": ""

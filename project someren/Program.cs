@@ -13,7 +13,7 @@ namespace project_someren
             builder.Services.AddRazorPages();
             
             builder.Services.AddDbContext<project_someren.Data.ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source=someren.db"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 

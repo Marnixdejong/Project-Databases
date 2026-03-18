@@ -29,6 +29,14 @@ namespace project_someren.Pages.Lecturers
                 return Page();
             }
 
+            // Check if lecturer with the same First and Last Name already exists
+            bool exists = _context.Lecturers.Any(l => l.FirstName == Lecturer.FirstName && l.LastName == Lecturer.LastName);
+            if (exists)
+            {
+                ModelState.AddModelError(string.Empty, "A lecturer with this name has already been added.");
+                return Page();
+            }
+
             _context.Lecturers.Add(Lecturer);
             await _context.SaveChangesAsync();
 

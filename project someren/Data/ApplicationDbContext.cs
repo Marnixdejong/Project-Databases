@@ -16,7 +16,10 @@ namespace project_someren.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
+            modelBuilder.Entity<Lecturer>().ToTable("Lecturer");
+            modelBuilder.Entity<Room>().ToTable("Room");
+
             // Seed test data
             modelBuilder.Entity<Lecturer>().HasData(
                 new Lecturer { Id = 1, FirstName = "John", LastName = "Doe", TelephoneNumber = "123456789", Age = 45 },

@@ -41,6 +41,14 @@ namespace project_someren.Pages.Lecturers
                 return Page();
             }
 
+            // Check if lecturer with the same First and Last Name already exists (excluding the current one)
+            bool exists = await _context.Lecturers.AnyAsync(l => l.FirstName == Lecturer.FirstName && l.LastName == Lecturer.LastName && l.Id != Lecturer.Id);
+            if (exists)
+            {
+                ModelState.AddModelError(string.Empty, "Another lecturer with this name already exists.");
+                return Page();
+            }
+
             _context.Attach(Lecturer).State = EntityState.Modified;
 
             try
