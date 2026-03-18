@@ -1,11 +1,21 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace project_someren.Models
 {
+    [Table("Lecturer")]
     public class Lecturer
     {
+        [Key]
+        [Column("lectureId")]
         public int Id { get; set; }
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public string TelephoneNumber { get; set; } = string.Empty;
+
+        [Column("age")]
         public int Age { get; set; }
+
+        [Column("personId")]
+        public int PersonId { get; set; }
+
+        public Person? Person { get; set; }
     }
 }

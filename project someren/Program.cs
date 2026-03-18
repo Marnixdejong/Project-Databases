@@ -10,10 +10,10 @@ namespace project_someren
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
             
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<project_someren.Data.ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source=someren.db"));
+                options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
@@ -42,7 +42,6 @@ namespace project_someren
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
 
             app.Run();
         }
