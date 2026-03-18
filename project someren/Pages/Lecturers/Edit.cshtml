@@ -1,0 +1,52 @@
+@page
+@model project_someren.Pages.Lecturers.EditModel
+
+@{
+    ViewData["Title"] = "Edit Lecturer";
+}
+
+<h1>Edit Lecturer</h1>
+
+<h4>Lecturer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Lecturer.Id" />
+            
+            <div class="form-group mb-3">
+                <label asp-for="Lecturer.FirstName" class="control-label"></label>
+                <input asp-for="Lecturer.FirstName" class="form-control" />
+                <span asp-validation-for="Lecturer.FirstName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Lecturer.LastName" class="control-label"></label>
+                <input asp-for="Lecturer.LastName" class="form-control" />
+                <span asp-validation-for="Lecturer.LastName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Lecturer.TelephoneNumber" class="control-label"></label>
+                <input asp-for="Lecturer.TelephoneNumber" class="form-control" />
+                <span asp-validation-for="Lecturer.TelephoneNumber" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Lecturer.Age" class="control-label"></label>
+                <input asp-for="Lecturer.Age" class="form-control" />
+                <span asp-validation-for="Lecturer.Age" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
