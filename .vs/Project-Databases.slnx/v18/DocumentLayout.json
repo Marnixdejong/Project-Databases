@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\10.0.201\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -21,6 +24,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|c:\\users\\noutm\\onedrive\\documents\\github school\\project-databases\\project someren\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB318245-043F-359C-90C4-41C173CC6B1E}|project someren\\project someren.csproj|solutionrelative:project someren\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +41,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\10.0.201\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\10.0.201\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ViewState": "AgIAAPIBAAAAAAAAAAAAAMECAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-03-18T13:00:16.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "project someren\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "project someren\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAEBUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T12:53:13.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "project someren\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\appsettings.Development.json",
+              "RelativeToolTip": "project someren\\appsettings.Development.json",
+              "ViewState": "AgIAAAIAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-18T12:51:47.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "project someren.csproj",
               "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\project someren.csproj",
               "RelativeDocumentMoniker": "project someren\\project someren.csproj",
@@ -47,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\appsettings.json",
               "RelativeDocumentMoniker": "project someren\\appsettings.json",
@@ -59,19 +108,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "project someren\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "project someren\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADQAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-18T11:40:19.986Z"
+              "WhenOpened": "2026-03-18T11:40:19.986Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\project someren\\Program.cs",
               "RelativeDocumentMoniker": "project someren\\Program.cs",
@@ -83,16 +133,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
               "ToolTip": "C:\\Users\\noutm\\OneDrive\\Documents\\github school\\Project-Databases\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-18T11:06:16.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-18T11:06:16.505Z"
             }
           ]
         }
