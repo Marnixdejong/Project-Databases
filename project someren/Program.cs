@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using project_someren.Data;
+using project_someren.Models;
 
 namespace project_someren
 {
@@ -36,7 +38,17 @@ namespace project_someren
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.Run();
+            using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (!context.Buildings.Any())
+    {
+        context.Buildings.Add(new Building { Name = "Main Campus Building" });
+        context.SaveChanges();
+    }
+}
+
+app.Run();
         }
     }
 }
