@@ -1,0 +1,43 @@
+
+@model SomerenWeb.Models.Room
+@{ ViewData["Title"] = "Create Room"; }
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-success text-white rounded-top-4 py-3">
+                <h3 class="mb-0 fw-bold"><i class="bi bi-plus-lg me-2"></i>Create New Room</h3>
+            </div>
+            <div class="card-body p-5 bg-light">
+                <form asp-action="Create">
+                    
+            <div class="form-floating mb-3 shadow-sm rounded">
+                <select asp-for="BuildingId" class="form-select" asp-items="ViewBag.BuildingId"></select>
+                <label asp-for="BuildingId">Building</label>
+                <span asp-validation-for="BuildingId" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3 shadow-sm rounded">
+                <input asp-for="RoomNumber" type="text" class="form-control" placeholder="RoomNumber" required />
+                <label asp-for="RoomNumber"></label>
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3 shadow-sm rounded">
+                <input asp-for="Capacity" type="number" class="form-control" placeholder="Capacity" required />
+                <label asp-for="Capacity"></label>
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="IsTeacherRoom" class="form-check-input" type="checkbox" />
+                <label class="form-check-label" asp-for="IsTeacherRoom">
+                    Is Teacher Room (Lecturer)
+                </label>
+            </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>
+                        <button type="submit" class="btn btn-success rounded-pill px-5 shadow">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
