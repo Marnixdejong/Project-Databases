@@ -1,0 +1,40 @@
+
+@model SomerenWeb.Models.Room
+@{ ViewData["Title"] = "Edit room"; }
+
+<section>
+    <h1>Edit room</h1>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <fieldset>
+            <legend>Room details</legend>
+
+            <p>
+                <label for="RoomNumber">Room number</label><br />
+                <input asp-for="RoomNumber" id="RoomNumber" type="text" class="form-control" required />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </p>
+            <p>
+                <label for="BuildingId">Building</label><br />
+                <select asp-for="BuildingId" id="BuildingId" class="form-select" asp-items="ViewBag.BuildingId"></select>
+                <span asp-validation-for="BuildingId" class="text-danger"></span>
+            </p>
+            <p>
+                <label for="Capacity">Capacity (beds)</label><br />
+                <input asp-for="Capacity" id="Capacity" type="number" class="form-control" required />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </p>
+            <p>
+                <input asp-for="IsTeacherRoom" id="IsTeacherRoom" class="form-check-input" type="checkbox" />
+                <label for="IsTeacherRoom">Lecturer room</label>
+            </p>
+        </fieldset>
+
+        <p class="mt-3">
+            <a asp-action="Index" class="btn btn-secondary">Back to list</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </p>
+    </form>
+</section>

@@ -1,0 +1,38 @@
+
+@model SomerenWeb.Models.Room
+@{ ViewData["Title"] = "Add room"; }
+
+<section>
+    <h1>Add room</h1>
+
+    <form asp-action="Create" method="post">
+        <fieldset>
+            <legend>Room details</legend>
+
+            <p>
+                <label for="RoomNumber">Room number</label><br />
+                <input asp-for="RoomNumber" id="RoomNumber" type="text" class="form-control" required />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </p>
+            <p>
+                <label for="BuildingId">Building</label><br />
+                <select asp-for="BuildingId" id="BuildingId" class="form-select" asp-items="ViewBag.BuildingId"></select>
+                <span asp-validation-for="BuildingId" class="text-danger"></span>
+            </p>
+            <p>
+                <label for="Capacity">Capacity (beds)</label><br />
+                <input asp-for="Capacity" id="Capacity" type="number" class="form-control" required />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </p>
+            <p>
+                <input asp-for="IsTeacherRoom" id="IsTeacherRoom" class="form-check-input" type="checkbox" />
+                <label for="IsTeacherRoom">Lecturer room</label>
+            </p>
+        </fieldset>
+
+        <p class="mt-3">
+            <a asp-action="Index" class="btn btn-secondary">Back to list</a>
+            <button type="submit" class="btn btn-success">Create</button>
+        </p>
+    </form>
+</section>

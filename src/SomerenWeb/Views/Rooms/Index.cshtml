@@ -1,0 +1,43 @@
+
+@model IEnumerable<SomerenWeb.Models.Room>
+@{ ViewData["Title"] = "Rooms"; }
+
+<section>
+    <h1>Rooms</h1>
+
+    <nav aria-label="Room actions" class="d-flex justify-content-between align-items-center mb-3">
+        <form method="get" asp-action="Index" class="d-flex gap-2" role="search">
+            <label for="minBeds" class="visually-hidden">Minimum beds</label>
+            <input type="number" id="minBeds" name="minBeds" value="@ViewData["MinBeds"]" class="form-control" placeholder="Min. beds" style="max-width: 150px;" />
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+        </form>
+        <a asp-action="Create" class="btn btn-primary">Add room</a>
+    </nav>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Room number</th>
+                <th scope="col">Building</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.RoomNumber</td>
+                <td>@item.Building?.Name</td>
+                <td>@item.Capacity</td>
+                <td>@(item.IsTeacherRoom ? "Lecturer" : "Student")</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
