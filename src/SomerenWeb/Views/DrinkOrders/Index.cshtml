@@ -1,0 +1,122 @@
+@model SomerenWeb.Models.DrinkOrderViewModel
+@{ ViewData["Title"] = "Drink Orders"; }
+
+<h1 class="display-5 fw-bold text-primary mb-4 mt-3">Process Drink Order</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-4">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-4">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <h3 class="mb-3">Students</h3>
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Telephone Number</th>
+                                <th>Student Number</th>
+                                <th>Class</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model.Students)
+                            {
+                                <tr>
+                                    <td>@s.Person?.FirstName</td>
+                                    <td>@s.Person?.LastName</td>
+                                    <td>@s.Person?.TelephoneNumber</td>
+                                    <td>@s.StudentNumber</td>
+                                    <td>@s.Class</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h3 class="mb-3">Drinks</h3>
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Alcoholic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model.Drinks)
+                            {
+                                <tr>
+                                    <td>@d.Name</td>
+                                    <td>@d.Price.ToString("C")</td>
+                                    <td>@d.Stock</td>
+                                    <td>@(d.IsAlcoholic ? "Yes" : "No")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 rounded-4 p-4 mt-4 mb-5">
+    <form asp-action="Order" method="post">
+        <h4 class="mb-4">Place New Order</h4>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="studentId" class="form-label">Student</label>
+                <select name="studentId" id="studentId" class="form-select" required>
+                    <option value="">-- Select Student --</option>
+                    @foreach (var student in Model.Students)
+                    {
+                        <option value="@student.Id">@student.Person?.FirstName @student.Person?.LastName</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="drinkId" class="form-label">Drink</label>
+                <select name="drinkId" id="drinkId" class="form-select" required>
+                    <option value="">-- Select Drink --</option>
+                    @foreach (var drink in Model.Drinks)
+                    {
+                        <option value="@drink.Id">@drink.Name (Stk: @drink.Stock)</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1" required />
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Process</button>
+            </div>
+        </div>
+    </form>
+</div>

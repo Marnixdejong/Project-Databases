@@ -15,5 +15,7 @@ namespace SomerenWeb.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Drink> Drinks { get; set; }
+        public DbSet<DrinkOrder> DrinkOrders { get; set; }
     }
 }

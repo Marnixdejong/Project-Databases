@@ -74,6 +74,18 @@ namespace SomerenWeb.Data
                 );
                 context.SaveChanges();
             }
+
+            // Seed some drinks
+            if (!context.Drinks.Any())
+            {
+                context.Drinks.AddRange(
+                    new Drink { Name = "Coca Cola", Price = 2.50m, Stock = 100, IsAlcoholic = false },
+                    new Drink { Name = "Water", Price = 1.00m, Stock = 200, IsAlcoholic = false },
+                    new Drink { Name = "Beer (Heineken)", Price = 3.50m, Stock = 50, IsAlcoholic = true },
+                    new Drink { Name = "Wine (Red)", Price = 4.00m, Stock = 20, IsAlcoholic = true }
+                );
+                context.SaveChanges();
+            }
         }
     }
 }
