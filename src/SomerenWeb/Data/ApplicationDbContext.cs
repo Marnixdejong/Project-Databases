@@ -17,5 +17,15 @@ namespace SomerenWeb.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<DrinkOrder> DrinkOrders { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivitySupervisor> ActivitySupervisors { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ActivitySupervisor>()
+                .HasKey(a => new { a.ActivityId, a.LecturerId });
+        }
     }
 }

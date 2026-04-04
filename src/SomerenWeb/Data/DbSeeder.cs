@@ -75,6 +75,31 @@ namespace SomerenWeb.Data
                 context.SaveChanges();
             }
 
+            // Seed some activities
+            if (!context.Activities.Any())
+            {
+                context.Activities.AddRange(
+                    new Activity { Name = "Kayaking", StartTime = new DateTime(2026, 6, 15, 10, 0, 0), EndTime = new DateTime(2026, 6, 15, 12, 0, 0) },
+                    new Activity { Name = "Hiking", StartTime = new DateTime(2026, 6, 15, 14, 0, 0), EndTime = new DateTime(2026, 6, 15, 17, 0, 0) },
+                    new Activity { Name = "Campfire", StartTime = new DateTime(2026, 6, 15, 20, 0, 0), EndTime = new DateTime(2026, 6, 15, 22, 0, 0) }
+                );
+                context.SaveChanges();
+            }
+
+            // Seed some activity supervisors
+            if (!context.ActivitySupervisors.Any())
+            {
+                var firstActivity = context.Activities.First();
+                var firstLecturer = context.Lecturers.First();
+
+                context.ActivitySupervisors.Add(new ActivitySupervisor
+                {
+                    ActivityId = firstActivity.Id,
+                    LecturerId = firstLecturer.Id
+                });
+                context.SaveChanges();
+            }
+
             // Seed some drinks
             if (!context.Drinks.Any())
             {

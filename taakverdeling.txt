@@ -1,0 +1,5 @@
+Taakverdeling Assignment 3 - Project Databases
+
+Nout  - Variant A: Process drink orders
+Marnix - Variant B: Manage activity supervisors
+Jan   - Variant C: Manage activity participants

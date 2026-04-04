@@ -1,0 +1,33 @@
+@model IEnumerable<SomerenWeb.Models.Activity>
+@{ ViewData["Title"] = "Activities"; }
+
+<section>
+    <header>
+        <h1>Activities</h1>
+    </header>
+
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in Model)
+            {
+                <tr>
+                    <td>@activity.Name</td>
+                    <td>@activity.StartTime.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@activity.EndTime.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>
+                        <a asp-action="ManageSupervisors" asp-route-id="@activity.Id"
+                           class="btn btn-sm btn-outline-primary">Manage Supervisors</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
