@@ -23,6 +23,8 @@ namespace SomerenWeb.Controllers
             return View(activities);
         }
 
+       
+
         public async Task<IActionResult> ManageSupervisors(int id)
         {
             var activity = await _context.Activities.FindAsync(id);
@@ -126,6 +128,112 @@ namespace SomerenWeb.Controllers
             }
 
             return RedirectToAction(nameof(ManageSupervisors), new { id = activityId });
+        }
+
+
+        public async Task<IActionResult> ManageParticipants(int id)
+        {
+            var activity = await _context.Activities.FindAsync(id);
+            if (activity == null)
+                return NotFound();
+
+            var participantIds = await _context.ActivityParticipants
+                .Where(a => a.ActivityId == id)
+                .Select(a => a.StudentId)
+                .ToListAsync();
+
+            var participants = await _context.Students
+                .Include(s => s.Person)
+                .Where(s => participantIds.Contains(s.Id))
+                .OrderBy(s => s.Person!.LastName)
+                .ToListAsync();
+
+            var nonParticipants = await _context.Students
+                .Include(s => s.Person)
+                .Where(s => !participantIds.Contains(s.Id))
+                .OrderBy(s => s.Person!.LastName)
+                .ToListAsync();
+
+            var viewModel = new ActivityParticipantsViewModel
+            {
+                Activity = activity,
+                Participants = participants,
+                NonParticipants = nonParticipants
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> AddParticipant(int activityId, int studentId)
+        {
+            try
+            {
+                var activity = await _context.Activities.FindAsync(activityId);
+                var student = await _context.Students
+                    .Include(s => s.Person)
+                    .FirstOrDefaultAsync(s => s.Id == studentId);
+
+                if (activity == null || student == null)
+                {
+                    TempData["ErrorMessage"] = "Activity or student not found.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                var exists = await _context.ActivityParticipants
+                    .AnyAsync(a => a.ActivityId == activityId && a.StudentId == studentId);
+
+                if (!exists)
+                {
+                    _context.ActivityParticipants.Add(new ActivityParticipant
+                    {
+                        ActivityId = activityId,
+                        StudentId = studentId
+                    });
+                    await _context.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = $"{student.Person?.FirstName} {student.Person?.LastName} added as participant for {activity.Name}.";
+                }
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong while adding the participant.";
+            }
+
+            return RedirectToAction(nameof(ManageParticipants), new { id = activityId });
+        }
+
+        public async Task<IActionResult> RemoveParticipant(int activityId, int studentId)
+        {
+            try
+            {
+                var activity = await _context.Activities.FindAsync(activityId);
+                var student = await _context.Students
+                    .Include(s => s.Person)
+                    .FirstOrDefaultAsync(s => s.Id == studentId);
+
+                if (activity == null || student == null)
+                {
+                    TempData["ErrorMessage"] = "Activity or student not found.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                var link = await _context.ActivityParticipants
+                    .FirstOrDefaultAsync(a => a.ActivityId == activityId && a.StudentId == studentId);
+
+                if (link != null)
+                {
+                    _context.ActivityParticipants.Remove(link);
+                    await _context.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = $"{student.Person?.FirstName} {student.Person?.LastName} removed as participant for {activity.Name}.";
+                }
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong while removing the participant.";
+            }
+
+            return RedirectToAction(nameof(ManageParticipants), new { id = activityId });
         }
     }
 }

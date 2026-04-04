@@ -1,0 +1,111 @@
+@model SomerenWeb.Models.ActivityParticipantsViewModel
+@{ ViewData["Title"] = "Manage Participants - " + Model.Activity.Name; }
+
+<section>
+    <header>
+        <h1>Manage Participants</h1>
+    </header>
+
+    <article class="mb-4">
+        <h2>Activity: @Model.Activity.Name</h2>
+        <p>
+            <strong>Start:</strong> @Model.Activity.StartTime.ToString("dd-MM-yyyy HH:mm") &mdash;
+            <strong>End:</strong> @Model.Activity.EndTime.ToString("dd-MM-yyyy HH:mm")
+        </p>
+    </article>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="row">
+        <section class="col-md-6 mb-4">
+            <h3>Current Participants</h3>
+
+            @if (Model.Participants.Any())
+            {
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Student Number</th>
+                            <th>Class</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var student in Model.Participants)
+                        {
+                            <tr>
+                                <td>@student.Person?.FirstName</td>
+                                <td>@student.Person?.LastName</td>
+                                <td>@student.StudentNumber</td>
+                                <td>@student.Class</td>
+                                <td>
+                                    <a asp-action="RemoveParticipant"
+                                       asp-route-activityId="@Model.Activity.Id"
+                                       asp-route-studentId="@student.Id"
+                                       class="btn btn-sm btn-danger">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">No participants assigned yet.</p>
+            }
+        </section>
+
+        <section class="col-md-6 mb-4">
+            <h3>Available Students</h3>
+
+            @if (Model.NonParticipants.Any())
+            {
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Student Number</th>
+                            <th>Class</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var student in Model.NonParticipants)
+                        {
+                            <tr>
+                                <td>@student.Person?.FirstName</td>
+                                <td>@student.Person?.LastName</td>
+                                <td>@student.StudentNumber</td>
+                                <td>@student.Class</td>
+                                <td>
+                                    <a asp-action="AddParticipant"
+                                       asp-route-activityId="@Model.Activity.Id"
+                                       asp-route-studentId="@student.Id"
+                                       class="btn btn-sm btn-success">Add</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">All students are already participants for this activity.</p>
+            }
+        </section>
+    </div>
+
+    <nav>
+        <a asp-action="Index" class="btn btn-secondary">Back to Activities</a>
+    </nav>
+</section>

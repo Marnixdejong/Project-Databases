@@ -19,6 +19,7 @@ namespace SomerenWeb.Data
         public DbSet<DrinkOrder> DrinkOrders { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivitySupervisor> ActivitySupervisors { get; set; }
+        public DbSet<ActivityParticipant> ActivityParticipants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,9 @@ namespace SomerenWeb.Data
 
             modelBuilder.Entity<ActivitySupervisor>()
                 .HasKey(a => new { a.ActivityId, a.LecturerId });
+
+            modelBuilder.Entity<ActivityParticipant>()
+                .HasKey(a => new { a.ActivityId, a.StudentId });
         }
     }
 }
