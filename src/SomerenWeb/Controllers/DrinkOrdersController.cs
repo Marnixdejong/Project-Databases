@@ -56,9 +56,9 @@ namespace SomerenWeb.Controllers
                 }
                 return SaveOrder(student, drink, quantity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Something went wrong while processing the order.";
+                TempData["ErrorMessage"] = $"Something went wrong: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
         }

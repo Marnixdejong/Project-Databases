@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(del \"c:\\\\Users\\\\marni\\\\OneDrive\\\\Documenten\\\\GitHub\\\\Project-Databases\\\\src\\\\SomerenWeb\\\\Data\\\\ApplicationDbContext.cs\")",
+      "Bash(del \"c:\\\\Users\\\\marni\\\\OneDrive\\\\Documenten\\\\GitHub\\\\Project-Databases\\\\src\\\\SomerenWeb\\\\Data\\\\DbSeeder.cs\")",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet run:*)",
+      "Bash(taskkill /PID 13396 /F)",
+      "Bash(taskkill /IM SomerenWeb.exe /F)",
+      "Bash(taskkill /IM dotnet.exe /F)",
+      "Bash(cmd.exe /c \"taskkill /IM SomerenWeb.exe /F & taskkill /PID 13396 /F\")",
+      "Bash(powershell -Command \"Stop-Process -Name SomerenWeb -Force -ErrorAction SilentlyContinue; Start-Sleep 1; Write-Host 'done'\")",
+      "Bash(powershell -Command \"Stop-Process -Name SomerenWeb -Force -ErrorAction SilentlyContinue; Start-Sleep 1\")"
+    ]
+  }
+}
