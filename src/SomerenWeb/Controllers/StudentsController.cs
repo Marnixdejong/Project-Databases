@@ -1,32 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SomerenWeb.Data;
 using SomerenWeb.Models;
+using SomerenWeb.Repositories;
 
 namespace SomerenWeb.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IStudentRepository _repository;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(IStudentRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<IActionResult> Index(string? searchLastName)
+        public IActionResult Index(string? searchLastName)
         {
-            var query = _context.Students.Include(s => s.Person).AsQueryable();
-
-            if (!string.IsNullOrEmpty(searchLastName))
+            try
             {
-                query = query.Where(s => s.Person!.LastName.Contains(searchLastName));
+                var students = _repository.GetAll(searchLastName);
+                ViewData["SearchLastName"] = searchLastName;
+                return View(students);
             }
-
-            var students = await query.OrderBy(s => s.Person!.LastName).ToListAsync();
-
-            ViewData["SearchLastName"] = searchLastName;
-            return View(students);
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load students.";
+                return View(new List<Student>());
+            }
         }
 
         public IActionResult Create()
@@ -36,74 +35,90 @@ namespace SomerenWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Student student)
+        public IActionResult Create(Student student)
         {
-            if (!ModelState.IsValid)
-                return View(student);
-
-            if (await _context.Students.AnyAsync(s => s.StudentNumber == student.StudentNumber))
+            if (!ModelState.IsValid) return View(student);
+            try
             {
-                ModelState.AddModelError("StudentNumber", "This student number is already in use.");
+                if (_repository.StudentNumberExists(student.StudentNumber))
+                {
+                    ModelState.AddModelError("StudentNumber", "This student number is already in use.");
+                    return View(student);
+                }
+                _repository.Create(student);
+                TempData["SuccessMessage"] = "Student added successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not save the student.";
                 return View(student);
             }
-
-            _context.Persons.Add(student.Person!);
-            await _context.SaveChangesAsync();
-            student.Id = student.Person!.Id;
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var student = await _context.Students.Include(s => s.Person).FirstOrDefaultAsync(s => s.Id == id);
-            if (student == null)
-                return NotFound();
-            return View(student);
+            try
+            {
+                var student = _repository.GetById(id);
+                if (student == null) return NotFound();
+                return View(student);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load the student.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Student updated)
+        public IActionResult Edit(Student student)
         {
-            if (!ModelState.IsValid)
-                return View(updated);
-
-            var existing = await _context.Students.Include(s => s.Person).FirstOrDefaultAsync(s => s.Id == updated.Id);
-            if (existing == null)
-                return NotFound();
-
-            existing.StudentNumber = updated.StudentNumber;
-            existing.Class = updated.Class;
-            existing.Person!.FirstName = updated.Person!.FirstName;
-            existing.Person.LastName = updated.Person.LastName;
-            existing.Person.TelephoneNumber = updated.Person.TelephoneNumber;
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (!ModelState.IsValid) return View(student);
+            try
+            {
+                _repository.Update(student);
+                TempData["SuccessMessage"] = "Student updated successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not update the student.";
+                return View(student);
+            }
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var student = await _context.Students.Include(s => s.Person).FirstOrDefaultAsync(s => s.Id == id);
-            if (student == null)
-                return NotFound();
-            return View(student);
+            try
+            {
+                var student = _repository.GetById(id);
+                if (student == null) return NotFound();
+                return View(student);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load the student.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var student = await _context.Students.Include(s => s.Person).FirstOrDefaultAsync(s => s.Id == id);
-            if (student != null)
+            try
             {
-                _context.Students.Remove(student);
-                _context.Persons.Remove(student.Person!);
-                await _context.SaveChangesAsync();
+                _repository.Delete(id);
+                TempData["SuccessMessage"] = "Student deleted successfully.";
+                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not delete the student. They may have related records.";
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

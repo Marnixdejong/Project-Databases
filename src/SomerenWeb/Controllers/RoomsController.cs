@@ -1,114 +1,136 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using SomerenWeb.Data;
 using SomerenWeb.Models;
+using SomerenWeb.Repositories;
 
 namespace SomerenWeb.Controllers
 {
     public class RoomsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IRoomRepository _repository;
 
-        public RoomsController(ApplicationDbContext context)
+        public RoomsController(IRoomRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<IActionResult> Index(int? minBeds)
+        public IActionResult Index(int? minBeds)
         {
-            var query = _context.Rooms.Include(r => r.Building).AsQueryable();
-
-            if (minBeds.HasValue)
+            try
             {
-                query = query.Where(r => r.Capacity >= minBeds.Value);
+                var rooms = _repository.GetAll(minBeds);
+                ViewData["MinBeds"] = minBeds;
+                return View(rooms);
             }
-
-            var rooms = await query.OrderBy(r => r.RoomNumber).ToListAsync();
-
-            ViewData["MinBeds"] = minBeds;
-            return View(rooms);
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load rooms.";
+                return View(new List<Room>());
+            }
         }
 
         public IActionResult Create()
         {
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name");
+            LoadBuildingList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Room room)
+        public IActionResult Create(Room room)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) { LoadBuildingList(room.BuildingId); return View(room); }
+            try
             {
-                ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", room.BuildingId);
+                if (_repository.RoomNumberExists(room.RoomNumber))
+                {
+                    ModelState.AddModelError("RoomNumber", "A room with this number already exists.");
+                    LoadBuildingList(room.BuildingId);
+                    return View(room);
+                }
+                _repository.Create(room);
+                TempData["SuccessMessage"] = "Room added successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not save the room.";
+                LoadBuildingList(room.BuildingId);
                 return View(room);
             }
-
-            if (await _context.Rooms.AnyAsync(r => r.RoomNumber == room.RoomNumber))
-            {
-                ModelState.AddModelError("RoomNumber", "A room with this number already exists.");
-                ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", room.BuildingId);
-                return View(room);
-            }
-
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var room = await _context.Rooms.Include(r => r.Building).FirstOrDefaultAsync(r => r.Id == id);
-            if (room == null)
-                return NotFound();
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", room.BuildingId);
-            return View(room);
+            try
+            {
+                var room = _repository.GetById(id);
+                if (room == null) return NotFound();
+                LoadBuildingList(room.BuildingId);
+                return View(room);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load the room.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Room updated)
+        public IActionResult Edit(Room room)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) { LoadBuildingList(room.BuildingId); return View(room); }
+            try
             {
-                ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", updated.BuildingId);
-                return View(updated);
+                _repository.Update(room);
+                TempData["SuccessMessage"] = "Room updated successfully.";
+                return RedirectToAction(nameof(Index));
             }
-
-            var existing = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == updated.Id);
-            if (existing == null)
-                return NotFound();
-
-            existing.RoomNumber = updated.RoomNumber;
-            existing.BuildingId = updated.BuildingId;
-            existing.Capacity = updated.Capacity;
-            existing.IsTeacherRoom = updated.IsTeacherRoom;
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not update the room.";
+                LoadBuildingList(room.BuildingId);
+                return View(room);
+            }
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var room = await _context.Rooms.Include(r => r.Building).FirstOrDefaultAsync(r => r.Id == id);
-            if (room == null)
-                return NotFound();
-            return View(room);
+            try
+            {
+                var room = _repository.GetById(id);
+                if (room == null) return NotFound();
+                return View(room);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load the room.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var room = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == id);
-            if (room != null)
+            try
             {
-                _context.Rooms.Remove(room);
-                await _context.SaveChangesAsync();
+                _repository.Delete(id);
+                TempData["SuccessMessage"] = "Room deleted successfully.";
+                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not delete the room. It may still have assignments.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        private void LoadBuildingList(int selectedId = 0)
+        {
+            var buildings = _repository.GetAllBuildings();
+            ViewData["BuildingId"] = new SelectList(buildings, "Id", "Name", selectedId);
         }
     }
 }

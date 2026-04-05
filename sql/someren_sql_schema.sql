@@ -1,12 +1,10 @@
 -- Clean up existing objects in correct dependency order
-IF OBJECT_ID('OrderItem', 'U') IS NOT NULL DROP TABLE OrderItem;
-IF OBJECT_ID('Order', 'U') IS NOT NULL DROP TABLE [Order];
+IF OBJECT_ID('DrinkOrder', 'U') IS NOT NULL DROP TABLE DrinkOrder;
 IF OBJECT_ID('Drink', 'U') IS NOT NULL DROP TABLE Drink;
 IF OBJECT_ID('ActivitySupervisor', 'U') IS NOT NULL DROP TABLE ActivitySupervisor;
 IF OBJECT_ID('ActivityParticipant', 'U') IS NOT NULL DROP TABLE ActivityParticipant;
 IF OBJECT_ID('Activity', 'U') IS NOT NULL DROP TABLE Activity;
 IF OBJECT_ID('RoomAssignment', 'U') IS NOT NULL DROP TABLE RoomAssignment;
-IF OBJECT_ID('Room_base', 'U') IS NOT NULL DROP TABLE Room_base;
 IF OBJECT_ID('Room', 'U') IS NOT NULL DROP TABLE Room;
 IF OBJECT_ID('Building', 'U') IS NOT NULL DROP TABLE Building;
 IF OBJECT_ID('Lecturer', 'U') IS NOT NULL DROP TABLE Lecturer;
@@ -54,7 +52,7 @@ CREATE TABLE Room (
     CONSTRAINT FK_Room_Building FOREIGN KEY (building_id) REFERENCES Building(building_id)
 );
 
--- Table: RoomAssignment
+-- Table: RoomAssignment (variant D - not implemented in web app)
 CREATE TABLE RoomAssignment (
     person_id INT NOT NULL,
     room_id INT NOT NULL,
@@ -90,6 +88,7 @@ CREATE TABLE ActivitySupervisor (
 );
 
 -- Table: Drink
+-- vat_rate: 0.09 = non-alcoholic (9% BTW), 0.21 = alcoholic (21% BTW)
 CREATE TABLE Drink (
     drink_id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -98,22 +97,15 @@ CREATE TABLE Drink (
     stock INT NOT NULL
 );
 
--- Table: [Order]
-CREATE TABLE [Order] (
+-- Table: DrinkOrder
+CREATE TABLE DrinkOrder (
     order_id INT IDENTITY(1,1) PRIMARY KEY,
     student_id INT NOT NULL,
-    order_date DATETIME NOT NULL,
-    CONSTRAINT FK_Order_Student FOREIGN KEY (student_id) REFERENCES Student(person_id)
-);
-
--- Table: OrderItem
-CREATE TABLE OrderItem (
-    order_id INT NOT NULL,
     drink_id INT NOT NULL,
     quantity INT NOT NULL,
-    PRIMARY KEY (order_id, drink_id),
-    CONSTRAINT FK_OrderItem_Order FOREIGN KEY (order_id) REFERENCES [Order](order_id),
-    CONSTRAINT FK_OrderItem_Drink FOREIGN KEY (drink_id) REFERENCES Drink(drink_id)
+    order_date DATETIME NOT NULL,
+    CONSTRAINT FK_DrinkOrder_Student FOREIGN KEY (student_id) REFERENCES Student(person_id),
+    CONSTRAINT FK_DrinkOrder_Drink FOREIGN KEY (drink_id) REFERENCES Drink(drink_id)
 );
 
 -- Test data
@@ -151,3 +143,14 @@ INSERT INTO Room (building_id, room_number, capacity, is_teacher_room) VALUES (1
 INSERT INTO Room (building_id, room_number, capacity, is_teacher_room) VALUES (1, 'A201', 2, 1);
 INSERT INTO Room (building_id, room_number, capacity, is_teacher_room) VALUES (2, 'B101', 6, 0);
 INSERT INTO Room (building_id, room_number, capacity, is_teacher_room) VALUES (2, 'B102', 2, 1);
+
+-- Activities
+INSERT INTO Activity (name, start_time, end_time) VALUES ('Kayaking', '2026-06-15 10:00:00', '2026-06-15 12:00:00');
+INSERT INTO Activity (name, start_time, end_time) VALUES ('Hiking', '2026-06-15 14:00:00', '2026-06-15 17:00:00');
+INSERT INTO Activity (name, start_time, end_time) VALUES ('Campfire', '2026-06-15 20:00:00', '2026-06-15 22:00:00');
+
+-- Drinks (vat_rate: 0.09 = non-alcoholic, 0.21 = alcoholic)
+INSERT INTO Drink (name, price, vat_rate, stock) VALUES ('Coca Cola', 2.50, 0.09, 50);
+INSERT INTO Drink (name, price, vat_rate, stock) VALUES ('Water', 1.00, 0.09, 100);
+INSERT INTO Drink (name, price, vat_rate, stock) VALUES ('Heineken', 3.50, 0.21, 30);
+INSERT INTO Drink (name, price, vat_rate, stock) VALUES ('Red Wine', 4.00, 0.21, 20);

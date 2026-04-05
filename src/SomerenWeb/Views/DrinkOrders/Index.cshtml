@@ -1,96 +1,116 @@
 @model SomerenWeb.Models.DrinkOrderViewModel
 @{ ViewData["Title"] = "Drink Orders"; }
 
-<h1 class="display-5 fw-bold text-primary mb-4 mt-3">Process Drink Order</h1>
+<section>
+    <header>
+        <h1>Process Drink Order</h1>
+    </header>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <p>
-        @TempData["SuccessMessage"]
-    </p>
-}
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <p>
-        @TempData["ErrorMessage"]
-    </p>
-}
+    <section class="mb-4">
+        <header>
+            <h2>Students</h2>
+        </header>
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Student number</th>
+                    <th scope="col">Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.Person?.FirstName</td>
+                        <td>@student.Person?.LastName</td>
+                        <td>@student.Person?.TelephoneNumber</td>
+                        <td>@student.StudentNumber</td>
+                        <td>@student.Class</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
 
-<h3>Students</h3>
-<table border="1">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Telephone Number</th>
-            <th>Student Number</th>
-            <th>Class</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model.Students)
-        {
-            <tr>
-                <td>@s.Person?.FirstName</td>
-                <td>@s.Person?.LastName</td>
-                <td>@s.Person?.TelephoneNumber</td>
-                <td>@s.StudentNumber</td>
-                <td>@s.Class</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <section class="mb-4">
+        <header>
+            <h2>Drinks</h2>
+        </header>
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">VAT</th>
+                    <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var drink in Model.Drinks)
+                {
+                    <tr>
+                        <td>@drink.Name</td>
+                        <td>@drink.Price.ToString("C")</td>
+                        <td>@((drink.VatRate * 100).ToString("0"))%</td>
+                        <td>@drink.Stock</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
 
-<h3>Drinks</h3>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Alcoholic</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var d in Model.Drinks)
-        {
-            <tr>
-                <td>@d.Name</td>
-                <td>@d.Price.ToString("C")</td>
-                <td>@d.Stock</td>
-                <td>@(d.IsAlcoholic ? "Yes" : "No")</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <section>
+        <header>
+            <h2>Place new order</h2>
+        </header>
+        <form asp-action="Order" method="post">
+            <fieldset>
+                <legend>Order details</legend>
 
-<form asp-action="Order" method="post">
-    <h4>Place New Order</h4>
+                <p>
+                    <label for="studentId">Student</label><br />
+                    <select name="studentId" id="studentId" class="form-select" required>
+                        <option value="">-- Select student --</option>
+                        @foreach (var student in Model.Students)
+                        {
+                            <option value="@student.Id">@student.Person?.FirstName @student.Person?.LastName</option>
+                        }
+                    </select>
+                </p>
 
-    <label for="studentId">Student</label>
-    <select name="studentId" id="studentId" required>
-        <option value="">-- Select Student --</option>
-        @foreach (var student in Model.Students)
-        {
-            <option value="@student.Id">@student.Person?.FirstName @student.Person?.LastName</option>
-        }
-    </select>
-    <br />
+                <p>
+                    <label for="drinkId">Drink</label><br />
+                    <select name="drinkId" id="drinkId" class="form-select" required>
+                        <option value="">-- Select drink --</option>
+                        @foreach (var drink in Model.Drinks)
+                        {
+                            <option value="@drink.Id">@drink.Name (stock: @drink.Stock)</option>
+                        }
+                    </select>
+                </p>
 
-    <label for="drinkId">Drink</label>
-    <select name="drinkId" id="drinkId" required>
-        <option value="">-- Select Drink --</option>
-        @foreach (var drink in Model.Drinks)
-        {
-            <option value="@drink.Id">@drink.Name (Stk: @drink.Stock)</option>
-        }
-    </select>
-    <br />
+                <p>
+                    <label for="quantity">Quantity</label><br />
+                    <input type="number" name="quantity" id="quantity" min="1" value="1"
+                           class="form-control" style="max-width: 150px;" required />
+                </p>
+            </fieldset>
 
-    <label for="quantity">Quantity</label>
-    <input type="number" name="quantity" id="quantity" min="1" value="1" required />
-    <br />
-
-    <button type="submit">Process</button>
-</form>
+            <p class="mt-3">
+                <button type="submit" class="btn btn-success">Process order</button>
+            </p>
+        </form>
+    </section>
+</section>

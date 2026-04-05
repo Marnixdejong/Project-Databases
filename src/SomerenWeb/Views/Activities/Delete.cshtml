@@ -1,0 +1,25 @@
+@model SomerenWeb.Models.Activity
+@{ ViewData["Title"] = "Delete activity"; }
+
+<section>
+    <header>
+        <h1>Delete activity</h1>
+    </header>
+
+    <article>
+        <p>Are you sure you want to delete the activity <strong>@Model.Name</strong>?</p>
+        <p>
+            <strong>Start:</strong> @Model.StartTime.ToString("dd-MM-yyyy HH:mm") &mdash;
+            <strong>End:</strong> @Model.EndTime.ToString("dd-MM-yyyy HH:mm")
+        </p>
+        <p class="text-warning">This will also remove all supervisors and participants linked to this activity.</p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <p>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </p>
+        </form>
+    </article>
+</section>

@@ -1,11 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using SomerenWeb.Data;
+using SomerenWeb.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
+builder.Services.AddScoped<IStudentRepository>(_ => new StudentRepository(connectionString));
+builder.Services.AddScoped<ILecturerRepository>(_ => new LecturerRepository(connectionString));
+builder.Services.AddScoped<IRoomRepository>(_ => new RoomRepository(connectionString));
+builder.Services.AddScoped<IActivityRepository>(_ => new ActivityRepository(connectionString));
+builder.Services.AddScoped<IDrinkOrderRepository>(_ => new DrinkOrderRepository(connectionString));
 
 var app = builder.Build();
 
@@ -23,13 +28,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-if (app.Environment.IsDevelopment())
-{
-    using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureCreated();
-    DbSeeder.SeedIfEmpty(context);
-}
 
 app.Run();

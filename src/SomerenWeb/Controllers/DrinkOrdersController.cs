@@ -1,71 +1,85 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SomerenWeb.Data;
 using SomerenWeb.Models;
+using SomerenWeb.Repositories;
 
 namespace SomerenWeb.Controllers
 {
     public class DrinkOrdersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDrinkOrderRepository _repository;
 
-        public DrinkOrdersController(ApplicationDbContext context)
+        public DrinkOrdersController(IDrinkOrderRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var model = new DrinkOrderViewModel
+            try
             {
-                Students = await _context.Students.Include(s => s.Person).ToListAsync(),
-                Drinks = await _context.Drinks.ToListAsync()
-            };
-
-            return View(model);
+                var model = new DrinkOrderViewModel
+                {
+                    Students = _repository.GetAllStudents(),
+                    Drinks = _repository.GetAllDrinks()
+                };
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Could not load drink order data.";
+                return View(new DrinkOrderViewModel());
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Order(int studentId, int drinkId, int quantity)
+        public IActionResult Order(int studentId, int drinkId, int quantity)
         {
             if (studentId == 0 || drinkId == 0 || quantity <= 0)
             {
-                TempData["ErrorMessage"] = "Invalid order details.";
+                TempData["ErrorMessage"] = "Invalid order details. Please select a student, a drink, and enter a valid quantity.";
                 return RedirectToAction(nameof(Index));
             }
+            return ProcessOrder(studentId, drinkId, quantity);
+        }
 
-            var student = await _context.Students.Include(s => s.Person).FirstOrDefaultAsync(s => s.Id == studentId);
-            var drink = await _context.Drinks.FindAsync(drinkId);
-
-            if (student == null || drink == null)
+        private IActionResult ProcessOrder(int studentId, int drinkId, int quantity)
+        {
+            try
             {
-                TempData["ErrorMessage"] = "Student or Drink not found.";
+                var student = _repository.GetStudentById(studentId);
+                var drink = _repository.GetDrinkById(drinkId);
+                if (student == null || drink == null)
+                {
+                    TempData["ErrorMessage"] = "Student or drink not found.";
+                    return RedirectToAction(nameof(Index));
+                }
+                return SaveOrder(student, drink, quantity);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong while processing the order.";
                 return RedirectToAction(nameof(Index));
             }
+        }
 
+        private IActionResult SaveOrder(Student student, Drink drink, int quantity)
+        {
             if (drink.Stock < quantity)
             {
                 TempData["ErrorMessage"] = $"Not enough stock for {drink.Name}. Available: {drink.Stock}.";
                 return RedirectToAction(nameof(Index));
             }
-
-            // Create order and update stock
             var order = new DrinkOrder
             {
-                StudentId = studentId,
-                DrinkId = drinkId,
+                StudentId = student.Id,
+                DrinkId = drink.Id,
                 Quantity = quantity,
                 OrderDate = DateTime.Now
             };
-
-            drink.Stock -= quantity;
-
-            _context.DrinkOrders.Add(order);
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = $"Order processed! {quantity}x {drink.Name} sold to {student.Person?.FirstName} {student.Person?.LastName}.";
-
+            _repository.CreateOrder(order);
+            _repository.UpdateDrinkStock(drink.Id, drink.Stock - quantity);
+            TempData["SuccessMessage"] = $"Order processed! {quantity}x {drink.Name} for {student.Person?.FirstName} {student.Person?.LastName}.";
             return RedirectToAction(nameof(Index));
         }
     }
